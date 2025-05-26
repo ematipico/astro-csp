@@ -1,0 +1,52 @@
+---
+import type { GetStaticPaths } from "astro";
+import { getEntry } from "astro:content";
+import { getCollection } from "astro:content";
+import Head from "../../components/Head.astro";
+
+interface Props {
+    id: string;
+}
+
+export const getStaticPaths = (async () => {
+    const items = await getCollection("cart");
+
+    return items.map((item) => ({
+        params: { id: item.id },
+        props: { id: item.id },
+    }));
+}) satisfies GetStaticPaths;
+
+const { id } = Astro.props;
+
+// biome-ignore lint/style/noNonNullAssertion: false positive
+const item = await getEntry("cart", id)!;
+---
+
+<html lang="en">
+    <head>
+        <meta charset="utf-8" />
+        <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+        <meta name="viewport" content="width=device-width" />
+        <meta name="generator" content={Astro.generator} />
+        <Head />
+        <title>Client router - To</title>
+    </head>
+    <body transition:animate="fade">
+        <h1>Client router - To</h1>
+        <div>
+            <h2>{item.data.name}</h2>
+            <p>Description: {item.data.description}</p>
+            <p>Price: {item.data.price}</p>
+        </div>
+    </body>
+</html>
+
+<style>
+    body {
+        margin: 0;
+        padding: 0;
+        font-family: Arial, sans-serif;
+        background-color: lightseagreen;
+    }
+</style>

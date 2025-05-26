@@ -1,0 +1,41 @@
+---
+import { getCollection } from "astro:content";
+import Head from "../../components/Head.astro";
+
+const items = await getCollection("cart");
+---
+
+<html lang="en">
+    <head>
+        <meta charset="utf-8" />
+        <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+        <meta name="viewport" content="width=device-width" />
+        <meta name="generator" content={Astro.generator} />
+        <Head />
+        <title>Client router - From</title>
+    </head>
+    <body transition:animate="fade">
+        <h1>Client router - From</h1>
+        <h2>Not working actually...</h2>
+        <ul>
+            {
+                items.map((item) => (
+                    <li>
+                        <a href={`/transitions/item-${item.id}`}>
+                            {item.data.name}
+                        </a>
+                    </li>
+                ))
+            }
+        </ul>
+    </body>
+</html>
+
+<style>
+    body {
+        margin: 0;
+        padding: 0;
+        font-family: Arial, sans-serif;
+        background-color: lightseagreen;
+    }
+</style>

@@ -1,0 +1,11 @@
+---
+import { getCollection } from "astro:content";
+
+const cart = await getCollection("cart");
+
+const total = cart.reduce((acc, item) => acc + item.data.price, 0);
+---
+
+<p>
+    Total: ${total}
+</p>

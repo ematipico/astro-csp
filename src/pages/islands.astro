@@ -1,5 +1,5 @@
 ---
-
+import Total from "../components/Total.astro";
 ---
 
 <html lang="en">
@@ -8,17 +8,12 @@
         <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
         <meta name="viewport" content="width=device-width" />
         <meta name="generator" content={Astro.generator} />
-        <title>Astro</title>
+        <title>Server islands</title>
     </head>
     <body>
-        <h1>Astro</h1>
+        <h1>With server island</h1>
+        <Total server:defer />
     </body>
-
-    <ul>
-        <li><a href="/counter">Counter</a></li>
-        <li><a href="/islands">Islands</a></li>
-        <li><a href="/transitions">Transitions</a></li>
-    </ul>
 </html>
 
 <style>
@@ -26,6 +21,6 @@
         margin: 0;
         padding: 0;
         font-family: Arial, sans-serif;
-        background-color: aqua;
+        background-color: greenyellow;
     }
 </style>
